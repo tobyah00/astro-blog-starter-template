@@ -1,50 +1,60 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title="LiveMusicLocal - Coming Soon">
+	<main class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[#121212]">
+		<!-- Background Glow Effects -->
+		<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+		<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-tertiary/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+		<div class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-12">
+
+			<!-- Logo -->
+			<div class="w-64 h-64 md:w-80 md:h-80 relative rounded-full overflow-hidden border border-outline-variant shadow-[0_0_30px_rgba(187,134,252,0.1)]">
+				<img
+					src="/images/logo.png"
+					alt="LiveMusicLocal Logo"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+
+			<!-- Typography & Content -->
+			<div class="flex flex-col items-center gap-6 glass-panel p-8 rounded-xl border border-outline-variant/30 w-full backdrop-blur-xl bg-surface-container/40">
+				<div class="inline-block px-4 py-1.5 border border-secondary rounded-full">
+					<span class="font-label text-secondary uppercase tracking-[0.1em] text-sm font-bold">
+						Access Granted Soon
+					</span>
+				</div>
+
+				<h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-primary uppercase tracking-wider drop-shadow-[0_0_15px_rgba(187,134,252,0.3)]">
+					Coming Soon
+				</h1>
+
+				<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-lg mt-2">
+					The raw excitement of a front-row concert experience. Connecting fans to local artists and venues.
+				</p>
+
+				<!-- CTA Area -->
+				<div class="mt-8 flex flex-col sm:flex-row gap-4 w-full justify-center">
+					<div class="relative group">
+						<div class="absolute -inset-0.5 bg-primary rounded-md blur opacity-30 group-hover:opacity-60 transition duration-200"></div>
+						<button class="relative w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary-container transition-colors">
+							Notify Me
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</main>
+</Layout>
+
+<style>
+	/* Glassmorphism utility if needed beyond Tailwind setup */
+	.glass-panel {
+		background: rgba(26, 26, 26, 0.4);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+</style>
