@@ -36,21 +36,14 @@ import Layout from '../layouts/Layout.astro';
 				</p>
 
 				<!-- CTA Area -->
-				<form action="https://formspree.io/f/xzdonjnv" method="POST" class="mt-8 flex flex-col sm:flex-row gap-4 w-full justify-center max-w-md">
-					<input
-						type="email"
-						name="email"
-						required
-						placeholder="Enter your email..."
-						class="flex-grow px-6 py-4 bg-surface-container-highest/50 border border-outline-variant/50 rounded text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-body text-lg"
-					/>
-					<div class="relative group shrink-0">
-						<div class="absolute -inset-0.5 bg-primary rounded-md blur opacity-30 group-hover:opacity-60 transition duration-200 pointer-events-none"></div>
-						<button type="submit" class="relative w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary-container transition-colors">
+				<div class="mt-8 flex flex-col sm:flex-row gap-4 w-full justify-center">
+					<div class="relative group">
+						<div class="absolute -inset-0.5 bg-primary rounded-md blur opacity-30 group-hover:opacity-60 transition duration-200"></div>
+						<button class="relative w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary-container transition-colors">
 							Notify Me
 						</button>
 					</div>
-				</form>
+				</div>
 			</div>
 
 		</div>
