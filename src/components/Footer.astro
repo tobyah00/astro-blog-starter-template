@@ -1,0 +1,14 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<footer class="w-full border-t border-outline-variant/30 bg-surface-container/40 mt-auto py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-on-surface-variant font-body text-sm">
+            &copy; {currentYear} LiveMusicLocal. All rights reserved.
+        </div>
+        <div class="flex gap-6">
+            <a href="/privacy" class="text-on-surface-variant hover:text-primary transition-colors font-body text-sm">Privacy Policy</a>
+            <a href="/terms" class="text-on-surface-variant hover:text-primary transition-colors font-body text-sm">Terms of Service</a>
+        </div>
+    </div>
+</footer>
