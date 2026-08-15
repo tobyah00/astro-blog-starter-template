@@ -4,9 +4,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
             <div class="flex-shrink-0">
-                <a href="/" class="flex items-center gap-2">
-                    <!-- Text Logo if image isn't available on all pages -->
-                    <span class="font-display text-2xl text-primary tracking-wider uppercase">LiveMusicLocal</span>
+                <a href="/" class="flex items-center gap-3">
+                    <!-- Logo Image -->
+                    <div class="w-10 h-10 relative rounded-full overflow-hidden border border-outline-variant shadow-[0_0_10px_rgba(187,134,252,0.1)]">
+                        <img
+                            src="/images/logo.png"
+                            alt="LiveMusicLocal Logo"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <!-- Text Logo -->
+                    <span class="font-display text-2xl text-primary tracking-wider uppercase hidden sm:block">LiveMusicLocal</span>
                 </a>
             </div>
             <nav class="hidden md:block">
@@ -16,7 +24,7 @@
                     <a href="/contact" class="text-on-surface-variant hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium font-body uppercase tracking-wider">Contact</a>
                 </div>
             </nav>
-            <!-- Mobile menu button - keeping simple for now -->
+            <!-- Mobile menu button -->
             <div class="md:hidden flex items-center">
                 <button type="button" class="text-on-surface-variant hover:text-primary focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-btn">
                     <span class="sr-only">Open main menu</span>
