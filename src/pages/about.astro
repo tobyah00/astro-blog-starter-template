@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About Us - LiveMusicLocal" showNav={true}>
+	<main class="flex-grow flex flex-col items-center justify-start p-8 relative overflow-hidden bg-[#121212]">
+		<!-- Background Glow Effects -->
+		<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+		<div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col gap-8">
+			<h1 class="font-display text-4xl md:text-6xl text-primary uppercase tracking-wider">
+				About Us
+			</h1>
+
+			<div class="glass-panel p-8 rounded-xl border border-outline-variant/30 backdrop-blur-xl bg-surface-container/40">
+                <div class="prose prose-invert max-w-none font-body text-on-surface-variant">
+                    <p class="text-lg leading-relaxed mb-6">
+                        Welcome to LiveMusicLocal. We are passionate about connecting fans to the heartbeat of their local music scene.
+                        Our mission is to make it easier than ever to discover amazing artists playing right in your backyard.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Whether you're looking for the raw energy of a punk show in a basement, or the smooth sounds of jazz in a cozy lounge,
+                        we believe that live music is a vital part of every community.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Stay tuned as we build the ultimate platform for local live music discovery.
+                    </p>
+                </div>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.glass-panel {
+		background: rgba(26, 26, 26, 0.4);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+</style>
