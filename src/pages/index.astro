@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { APP_URL } from '../consts';
 ---
 
-<Layout title="LiveMusicLocal - Coming Soon" showNav={true}>
+<Layout title="LiveMusicLocal - Live Music Near You (Beta)" showNav={true}>
 	<main class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[#121212]">
 		<!-- Background Glow Effects -->
 		<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -21,14 +22,18 @@ import Layout from '../layouts/Layout.astro';
 
 			<!-- Typography & Content -->
 			<div class="flex flex-col items-center gap-6 glass-panel p-8 rounded-xl border border-outline-variant/30 w-full backdrop-blur-xl bg-surface-container/40">
-				<div class="inline-block px-4 py-1.5 border border-secondary rounded-full">
+				<div class="inline-flex items-center gap-2 px-4 py-1.5 border border-secondary rounded-full">
+					<span class="relative flex h-2 w-2">
+						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+						<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+					</span>
 					<span class="font-label text-secondary uppercase tracking-[0.1em] text-sm font-bold">
-						Access Granted Soon
+						Now in Open Beta
 					</span>
 				</div>
 
 				<h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-primary uppercase tracking-wider drop-shadow-[0_0_15px_rgba(187,134,252,0.3)]">
-					Coming Soon
+					The Beta Is Live
 				</h1>
 
 				<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-lg mt-2">
@@ -39,11 +44,24 @@ import Layout from '../layouts/Layout.astro';
 				<div class="mt-8 flex flex-col sm:flex-row gap-4 w-full justify-center">
 					<div class="relative group">
 						<div class="absolute -inset-0.5 bg-primary rounded-md blur opacity-30 group-hover:opacity-60 transition duration-200"></div>
-						<button id="notify-btn" class="relative w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary-container transition-colors">
-							Notify Me
-						</button>
+						<a href={APP_URL} class="relative block w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary-container transition-colors">
+							Launch the App
+						</a>
 					</div>
+					<button id="notify-btn" class="w-full sm:w-auto px-8 py-4 bg-transparent text-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary/10 transition-colors">
+						Get Updates
+					</button>
 				</div>
+
+				<p class="font-body text-on-surface-variant text-sm max-w-md">
+					Free to use in any browser on phone or desktop. Add it to your home screen to install it like an app.
+					<span class="text-on-surface">Native iOS and Android apps coming soon.</span>
+				</p>
+
+				<p class="font-body text-outline text-xs max-w-md">
+					This is an early beta, so things may change and you might hit a bug or two.
+					<a href="/contact" class="underline hover:text-primary transition-colors">Send us feedback</a>.
+				</p>
 			</div>
 
 		</div>
@@ -57,8 +75,8 @@ import Layout from '../layouts/Layout.astro';
 					</svg>
 				</button>
 
-				<h2 class="text-2xl font-display text-primary mb-4">Get Notified</h2>
-				<p class="text-on-surface-variant mb-6 font-body">Enter your email to be the first to know when we launch.</p>
+				<h2 class="text-2xl font-display text-primary mb-4">Get Beta Updates</h2>
+				<p class="text-on-surface-variant mb-6 font-body">Enter your email and we'll let you know about new features and when the iOS and Android apps launch.</p>
 
 				<form action="https://formspree.io/f/xzdonjnv" method="POST" class="flex flex-col gap-4">
 					<input
