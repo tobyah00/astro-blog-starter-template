@@ -26,3 +26,7 @@ pnpm-debug.log*
 # wrangler files
 .wrangler
 .dev.vars
+
+# Browser test output
+/test-results/
+/playwright-report/

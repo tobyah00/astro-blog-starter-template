@@ -1,64 +1,53 @@
-# Astro Starter Kit: Blog
+# LiveMusicLocal website
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template)
+Astro and Tailwind marketing pages for LiveMusicLocal’s public beta.
 
-![Astro Template Preview](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+- Website: https://livemusiclocal.com
+- Separate beta app: https://app.livemusiclocal.com (not implemented in this repository)
+- Pages: home, about, contact, sponsorship, privacy, and terms
+- Contact, sponsorship, and beta update forms submit to Formspree. Delivery and mailing-list operations are configured outside this repository.
 
-<!-- dash-content-start -->
+## Local development
 
-Create a blog with Astro and deploy it on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
+Use Node.js 22 LTS and npm. From the repository root:
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-- ✅ Built-in Observability logging
-
-<!-- dash-content-end -->
-
-## Getting Started
-
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/astro-blog-starter-template
+```sh
+npm ci
+npm run dev
 ```
 
-A live public deployment of this template is available at [https://astro-blog-starter-template.templates.workers.dev](https://astro-blog-starter-template.templates.workers.dev)
+Astro serves development pages at http://localhost:4321.
 
-## 🚀 Project Structure
+## Validation (no deployment)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+```sh
+npm run build
+npx tsc --noEmit
+npx playwright install chromium
+npm test
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Browser tests start a local Astro server and cover keyboard dialog behavior, mobile navigation, page metadata, and privacy revision text. They do not submit forms or test the separate app.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+The existing `npm run check` includes `wrangler deploy --dry-run`; use the commands above when no Wrangler deployment commands should run. Build output is generated in `dist/`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Content and configuration
 
-## 🧞 Commands
+- `src/pages/`: page content and page-specific descriptions
+- `src/layouts/Layout.astro`: shared metadata, Google Fonts, and layout
+- `src/components/`: header and footer
+- `src/consts.ts`: default description and external app URL
+- `public/images/`: optimized brand imagery used on the site and social previews
+- `tailwind.config.mjs`: theme colors and fonts
+- `astro.config.mjs`: canonical website origin and sitemap integration
+- `wrangler.json`: Cloudflare Worker build entrypoint and static assets
 
-All commands are run from the root of the project, from a terminal:
+There is no blog, RSS route, or content collection currently implemented. Google Fonts are requested remotely; website forms are processed by Formspree. Keep the privacy notice accurate when integrations change, and update its revision date only when the notice changes.
 
-| Command                           | Action                                           |
-| :-------------------------------- | :----------------------------------------------- |
-| `npm install`                     | Installs dependencies                            |
-| `npm run dev`                     | Starts local dev server at `localhost:4321`      |
-| `npm run build`                   | Build your production site to `./dist/`          |
-| `npm run preview`                 | Preview your build locally, before deploying     |
-| `npm run astro ...`               | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help`         | Get help using the Astro CLI                     |
-| `npm run build && npm run deploy` | Deploy your production site to Cloudflare        |
-| `npm wrangler tail`               | View real-time logs for all Workers              |
+## Deployment and domains — manual, separately authorized
 
-## 👀 Want to learn more?
+Do not run deployment commands while reviewing or testing a pull request.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+For a separately approved production release, the existing commands are `npm run build` followed by `npm run deploy`. The latter runs `wrangler deploy` and requires authorized Cloudflare access. Domain bindings and any Cloudflare Git integration are managed outside this repository; no GitHub Actions workflows are included here. Verify external build/deploy settings before pushing branches if deployment must be avoided.
 
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+The configured canonical origin is `https://livemusiclocal.com`; the external app link is centralized in `src/consts.ts`. Changing either value does not provision DNS, bind a custom domain, or deploy the separate app. Do not change hosting or domain settings as part of routine page edits.
