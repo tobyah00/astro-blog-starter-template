@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { APP_URL } from '../consts';
 ---
 
 <Layout title="Terms of Service - LiveMusicLocal" showNav={true}>
@@ -15,21 +16,57 @@ import Layout from '../layouts/Layout.astro';
                 <div class="prose prose-invert max-w-none font-body text-on-surface-variant">
                     <h2 class="text-2xl text-on-surface font-semibold mb-4">1. Acceptance of Terms</h2>
                     <p class="mb-6">
-                        By accessing or using LiveMusicLocal, you agree to be bound by these Terms of Service.
+                        By accessing or using LiveMusicLocal, including our website and the LiveMusicLocal app at <a href={APP_URL} class="underline hover:text-primary">{APP_URL.replace("https://", "")}</a> (together, the &ldquo;Service&rdquo;), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.
                     </p>
 
                     <h2 class="text-2xl text-on-surface font-semibold mb-4">2. Use of Service</h2>
                     <p class="mb-6">
-                        You agree to use our services only for lawful purposes and in accordance with these Terms.
+                        You agree to use the Service only for lawful purposes and in accordance with these Terms. You may not misuse the Service, interfere with its operation, or attempt to access it by any means other than the interfaces we provide.
                     </p>
 
-                    <h2 class="text-2xl text-on-surface font-semibold mb-4">3. Changes to Terms</h2>
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">3. Beta Service</h2>
                     <p class="mb-6">
-                        We reserve the right to modify these terms at any time. We will notify users of any significant changes.
+                        The LiveMusicLocal app is currently offered as a public beta. By using the beta, you understand and agree that:
+                    </p>
+                    <ul class="list-disc pl-6 mb-6 space-y-2">
+                        <li>The Service is still in development and is provided for early access and testing. It may contain bugs, errors, or incomplete features.</li>
+                        <li>Features may be added, changed, or removed at any time, and the Service may be unavailable from time to time without notice.</li>
+                        <li>Data you create during the beta, such as saved shows, preferences, or account details, may be reset or deleted as we improve the Service.</li>
+                        <li>We may end the beta, or limit or end your access to it, at any time.</li>
+                    </ul>
+
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">4. Feedback</h2>
+                    <p class="mb-6">
+                        We welcome your feedback, suggestions, and bug reports. By sending feedback, you agree that we may use it to improve the Service without any obligation to you.
+                    </p>
+
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">5. Event Information</h2>
+                    <p class="mb-6">
+                        Event listings, times, venues, and other details may come from artists, venues, and other third parties. We do our best to keep this information accurate, but we cannot guarantee it. Please confirm details with the venue or ticket seller before attending an event.
+                    </p>
+
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">6. Disclaimer of Warranties</h2>
+                    <p class="mb-6">
+                        The Service, including the beta, is provided &ldquo;as is&rdquo; and &ldquo;as available,&rdquo; without warranties of any kind, either express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.
+                    </p>
+
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">7. Limitation of Liability</h2>
+                    <p class="mb-6">
+                        To the fullest extent permitted by law, LiveMusicLocal will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of data, arising out of or related to your use of, or inability to use, the Service.
+                    </p>
+
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">8. Changes to Terms</h2>
+                    <p class="mb-6">
+                        We may update these Terms from time to time, including when the beta ends or when our iOS and Android apps launch. We will notify users of any significant changes. Continuing to use the Service after changes take effect means you accept the updated Terms.
+                    </p>
+
+                    <h2 class="text-2xl text-on-surface font-semibold mb-4">9. Contact</h2>
+                    <p class="mb-6">
+                        Questions about these Terms? <a href="/contact" class="underline hover:text-primary">Contact us</a>.
                     </p>
 
                     <p class="text-sm text-outline mt-12">
-                        Last updated: {new Date().toLocaleDateString()}
+                        Last updated: November 8, 2026
                     </p>
                 </div>
 			</div>
