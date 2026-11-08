@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Privacy Policy - LiveMusicLocal" showNav={true}>
+<Layout title="Privacy Policy - LiveMusicLocal" showNav={true} description="Read how the LiveMusicLocal website handles form submissions and uses third-party services.">
 	<main class="flex-grow flex flex-col items-center justify-start p-8 relative overflow-hidden bg-[#121212]">
 		<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
@@ -25,11 +25,17 @@ import Layout from '../layouts/Layout.astro';
 
                     <h2 class="text-2xl text-on-surface font-semibold mb-4">3. Information Sharing</h2>
                     <p class="mb-6">
-                        We do not share your personal information with third parties except as described in this privacy policy.
+                        Our website forms submit directly to Formspree, a third-party form service. Formspree processes the email address you enter for beta updates, and the contact or sponsorship details you submit, so we can receive and respond to your request. See <a href="https://formspree.io/legal/privacy-policy/" class="underline hover:text-primary">Formspree’s privacy policy</a> for information about its processing.
+                    </p>
+                    <p class="mb-6">
+                        This website loads fonts from Google Fonts. Your browser makes requests to Google to retrieve these fonts, which can expose connection information such as your IP address. See <a href="https://developers.google.com/fonts/faq/privacy" class="underline hover:text-primary">Google Fonts privacy information</a>.
+                    </p>
+                    <p class="mb-6">
+                        If you have questions about information you have submitted, want to stop receiving updates, or wish to request deletion, please <a href="/contact" class="underline hover:text-primary">contact us</a>. This notice describes this marketing website; it is not an audit of the separate beta app’s data handling.
                     </p>
 
                     <p class="text-sm text-outline mt-12">
-                        Last updated: {new Date().toLocaleDateString()}
+                        Last updated: November 8, 2026
                     </p>
                 </div>
 			</div>

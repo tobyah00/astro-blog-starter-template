@@ -33,7 +33,7 @@ import { APP_URL } from '../consts';
             </nav>
             <!-- Mobile menu button -->
             <div class="lg:hidden flex items-center">
-                <button type="button" class="text-on-surface-variant hover:text-primary focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-btn">
+                <button type="button" class="text-on-surface-variant hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-btn">
                     <span class="sr-only">Open main menu</span>
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -61,7 +61,16 @@ import { APP_URL } from '../consts';
 
         if (btn && menu) {
             btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
+                const expanded = btn.getAttribute('aria-expanded') !== 'true';
+                btn.setAttribute('aria-expanded', String(expanded));
+                menu.classList.toggle('hidden', !expanded);
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+                    btn.setAttribute('aria-expanded', 'false');
+                    menu.classList.add('hidden');
+                    btn.focus();
+                }
             });
         }
     });

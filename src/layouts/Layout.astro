@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { title, showNav = false, description = SITE_DESCRIPTION } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL("/images/logo-hero.webp", Astro.site);
 ---
 
 <!doctype html>
@@ -23,6 +25,19 @@ const { title, showNav = false, description = SITE_DESCRIPTION } = Astro.props;
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="LiveMusicLocal" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:image:alt" content="LiveMusicLocal logo" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:image:alt" content="LiveMusicLocal logo" />
 
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,5 +61,12 @@ const { title, showNav = false, description = SITE_DESCRIPTION } = Astro.props;
 	html {
 		font-family: var(--font-body);
 		background: #151219;
+	}
+</style>
+
+<style is:global>
+	:focus-visible { outline: 2px solid #dab9ff; outline-offset: 4px; }
+	@media (prefers-reduced-motion: reduce) {
+		.animate-ping { animation: none; }
 	}
 </style>
