@@ -4,15 +4,15 @@ import { APP_URL } from '../consts';
 ---
 
 <Layout title="LiveMusicLocal - Live Music Near You (Beta)" showNav={true}>
-	<main class="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[#121212]">
+	<main class="flex-grow flex flex-col items-center px-4 py-6 sm:py-10 relative overflow-hidden bg-[#121212]">
 		<!-- Background Glow Effects -->
 		<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
 		<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-tertiary/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-		<div class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-12">
+		<div class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center gap-6 md:gap-8">
 
 			<!-- Logo -->
-			<div class="w-64 h-64 md:w-80 md:h-80 relative rounded-full overflow-hidden border border-outline-variant shadow-[0_0_30px_rgba(187,134,252,0.1)]">
+			<div class="w-36 h-36 md:w-64 md:h-64 relative rounded-full overflow-hidden border border-outline-variant shadow-[0_0_30px_rgba(187,134,252,0.1)]">
 				<img
 					src="/images/logo-hero.webp"
 					width="640"
@@ -24,7 +24,7 @@ import { APP_URL } from '../consts';
 			</div>
 
 			<!-- Typography & Content -->
-			<div class="flex flex-col items-center gap-6 glass-panel p-8 rounded-xl border border-outline-variant/30 w-full backdrop-blur-xl bg-surface-container/40">
+			<div class="flex flex-col items-center gap-4 md:gap-6 glass-panel p-5 sm:p-8 rounded-xl border border-outline-variant/30 w-full backdrop-blur-xl bg-surface-container/40">
 				<div class="inline-flex items-center gap-2 px-4 py-1.5 border border-secondary rounded-full">
 					<span class="relative flex h-2 w-2">
 						<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
@@ -35,23 +35,23 @@ import { APP_URL } from '../consts';
 					</span>
 				</div>
 
-				<h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-primary uppercase tracking-wider drop-shadow-[0_0_15px_rgba(187,134,252,0.3)]">
+				<h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary uppercase tracking-wider drop-shadow-[0_0_15px_rgba(187,134,252,0.3)]">
 					Find Your Local Music Scene
 				</h1>
 
-				<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-lg mt-2">
+				<p class="font-body text-on-surface-variant text-base sm:text-lg md:text-xl max-w-lg">
 					Discover local artists, venues, and live music near you. Explore the LiveMusicLocal web app, now in open beta.
 				</p>
 
 				<!-- CTA Area -->
-				<div class="mt-8 flex flex-col sm:flex-row gap-4 w-full justify-center">
+				<div class="mt-2 flex flex-col sm:flex-row gap-3 w-full justify-center">
 					<div class="relative group">
 						<div class="absolute -inset-0.5 bg-primary rounded-md blur opacity-30 group-hover:opacity-60 transition duration-200"></div>
 						<a href={APP_URL} class="relative block w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary-container transition-colors">
 							Launch the App
 						</a>
 					</div>
-					<button id="notify-btn" class="w-full sm:w-auto px-8 py-4 bg-transparent text-primary font-display text-xl uppercase tracking-wider rounded border border-primary/50 hover:bg-primary/10 transition-colors">
+					<button id="notify-btn" class="w-full sm:w-auto px-6 py-3 bg-transparent text-primary font-body text-base font-medium rounded border border-outline-variant hover:bg-primary/10 transition-colors">
 						Get Updates
 					</button>
 				</div>
@@ -68,6 +68,25 @@ import { APP_URL } from '../consts';
 			</div>
 
 		</div>
+
+		<section aria-labelledby="app-preview-title" class="relative z-10 w-full max-w-2xl mx-auto mt-12 md:mt-16 text-center">
+			<h2 id="app-preview-title" class="font-display text-3xl md:text-4xl text-primary uppercase tracking-wider">A Look Inside the App</h2>
+			<p class="mt-3 text-on-surface-variant font-body">Preview the Discover screen, then open the app to explore.</p>
+			<figure class="mt-6">
+				<img
+					src="/images/app-discover-780.webp"
+					srcset="/images/app-discover-390.webp 390w, /images/app-discover-780.webp 780w"
+					sizes="(max-width: 421px) calc(100vw - 32px), 390px"
+					width="780"
+					height="1688"
+					loading="lazy"
+					decoding="async"
+					alt="LiveMusicLocal Discover screen showing Next Live Show, Trending Gigs, Upcoming Nearby, and app navigation."
+					class="block w-full max-w-[390px] h-auto mx-auto rounded-xl border border-outline-variant/50 shadow-xl"
+				/>
+				<figcaption class="mt-4 mx-auto max-w-md font-body text-sm text-on-surface-variant">Screenshot of the public beta, captured November 8, 2026. This is a static preview; listings and availability may change. Check current details in the app.</figcaption>
+			</figure>
+		</section>
 
 		<!-- Notify Modal -->
 		<dialog id="notify-modal" aria-labelledby="notify-title" aria-describedby="notify-description" class="m-auto w-full max-w-md bg-transparent p-4 text-on-surface backdrop:bg-black/60 backdrop:backdrop-blur-sm">
