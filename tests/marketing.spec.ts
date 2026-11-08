@@ -94,3 +94,47 @@ test('public assets and production sitemap are served; unknown paths are real 40
   }
   expect((await request.get('/not-a-real-page-security-regression')).status()).toBe(404);
 });
+
+
+test('homepage keeps the primary launch action high on mobile without overflow', async ({ page }) => {
+  for (const viewport of [{ width: 390, height: 844 }, { width: 375, height: 667 }, { width: 1280, height: 900 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+    const launch = page.getByRole('link', { name: 'Launch the App', exact: true });
+    await expect(launch).toHaveAttribute('href', 'https://app.livemusiclocal.com');
+    await expect(launch).toHaveCSS('background-color', 'rgb(218, 185, 255)');
+    const bounds = await launch.boundingBox();
+    expect(bounds).not.toBeNull();
+    if (viewport.width === 390) {
+      expect(bounds!.y).toBeGreaterThan(0);
+      expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(viewport.height);
+    }
+    await expect(page.getByRole('button', { name: 'Get Updates' })).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    expect(await page.locator('body').evaluate(el => el.scrollWidth <= window.innerWidth)).toBeTruthy();
+  }
+});
+
+
+test('genuine app screenshot is below the hero, responsive and lazy loaded', async ({ page }) => {
+  for (const viewport of [{ width: 390, height: 844 }, { width: 375, height: 667 }, { width: 1280, height: 900 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/');
+    const section = page.getByRole('region', { name: 'A Look Inside the App' });
+    const preview = section.getByRole('img');
+    await expect(preview).toHaveAttribute('loading', 'lazy');
+    await expect(preview).toHaveAttribute('width', '780');
+    await expect(preview).toHaveAttribute('height', '1688');
+    const launch = await page.getByRole('link', { name: 'Launch the App', exact: true }).boundingBox();
+    const position = await section.boundingBox();
+    expect(position!.y).toBeGreaterThan(launch!.y + launch!.height);
+    await preview.scrollIntoViewIfNeeded();
+    await expect(preview).toBeVisible();
+    await expect.poll(() => preview.evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    const image = await preview.boundingBox();
+    expect(image!.width).toBeLessThanOrEqual(Math.min(390, viewport.width - 32));
+    expect(Math.abs(image!.height / image!.width - 1688 / 780)).toBeLessThan(0.02);
+    await expect(section).toContainText('static preview');
+    expect(await page.locator('body').evaluate(el => el.scrollWidth <= window.innerWidth)).toBeTruthy();
+  }
+});
