@@ -15,29 +15,32 @@
     "publish": true
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12.6.0",
-    "@astrojs/mdx": "4.3.0",
-    "@astrojs/rss": "4.0.11",
-    "@astrojs/sitemap": "3.4.1",
-    "astro": "5.10.1",
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.7",
     "typescript": "5.8.3"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/check": "^0.9.12",
     "@playwright/test": "^1.65.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
     "tailwindcss": "^3.4.19",
-    "wrangler": "4.21.x"
+    "wrangler": "4.158.0"
   },
   "scripts": {
     "astro": "astro",
     "build": "astro build",
-    "cf-typegen": "wrangler types",
-    "check": "astro build && tsc && wrangler deploy --dry-run",
+    "check": "astro check && tsc --noEmit",
     "deploy": "wrangler deploy",
     "dev": "astro dev",
-    "preview": "astro build && wrangler dev",
-    "test": "playwright test"
+    "preview": "astro preview",
+    "test": "playwright test",
+    "serve:local": "wrangler dev --local --ip 127.0.0.1 --port 8787",
+    "test:production": "npm run build && TEST_PRODUCTION=1 playwright test"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4",
+    "npm": ">=9.6.5"
+  }
 }
