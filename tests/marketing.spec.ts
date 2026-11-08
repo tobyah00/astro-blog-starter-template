@@ -7,6 +7,11 @@ test('updates dialog contains focus, closes with Escape, and restores focus', as
   const dialog = page.getByRole('dialog', { name: 'Get Beta Updates' });
   await expect(dialog).toBeVisible();
   await expect(page.getByLabel('Email address', { exact: true })).toBeFocused();
+  // A modal dialog makes background controls inert, even to explicit focus().
+  await trigger.evaluate(el => el.focus());
+  await expect(trigger).not.toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(page.getByRole('button', { name: 'Close updates dialog' })).toBeFocused();
   for (let i = 0; i < 8; i++) {
     await page.keyboard.press('Tab');
     expect(await dialog.evaluate(el => el.contains(document.activeElement) || document.activeElement === document.body)).toBeTruthy();
@@ -40,7 +45,7 @@ test('all pages expose canonical and social metadata with distinct descriptions'
   for (const route of ['/', '/about', '/contact', '/sponsor', '/privacy', '/terms']) {
     await page.goto(route);
     const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
-    expect(canonical).toBe(`https://livemusiclocal.com${route}`);
+    expect(canonical).toBe(`https://livemusiclocal.com${new URL(page.url()).pathname}`);
     const description = await page.locator('meta[name="description"]').getAttribute('content');
     expect(description).toBeTruthy();
     descriptions.add(description!);
@@ -57,4 +62,35 @@ test('privacy discloses providers and has a stable revision', async ({ page }) =
   await expect(page.getByRole('main')).toContainText('Formspree');
   await expect(page.getByRole('main')).toContainText('Google Fonts');
   await expect(page.getByRole('main')).toContainText('Last updated: November 8, 2026');
+});
+
+
+test('all routes retain Tailwind styling and real image assets at desktop and mobile sizes', async ({ page }) => {
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ['/', '/about', '/contact', '/sponsor', '/privacy', '/terms']) {
+      const response = await page.goto(route);
+      expect(response?.status()).toBe(200);
+      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('color', 'rgb(218, 185, 255)');
+      await expect(page.getByRole('main')).toHaveCSS('background-color', 'rgb(18, 18, 18)');
+      expect(await page.locator('body').evaluate(el => el.scrollWidth <= window.innerWidth)).toBeTruthy();
+      for (const image of await page.locator('img').all()) {
+        await expect(image).toBeVisible();
+        expect(await image.evaluate(el => (el as HTMLImageElement).complete && (el as HTMLImageElement).naturalWidth > 0)).toBeTruthy();
+      }
+      if (width === 390) await expect(page.getByRole('button', { name: 'Open main menu' })).toBeVisible();
+      else await expect(page.getByRole('button', { name: 'Open main menu' })).not.toBeVisible();
+    }
+  }
+});
+
+test('public assets and production sitemap are served; unknown paths are real 404s', async ({ request }) => {
+  // The sitemap integration generates XML during build, not in Astro dev.
+  const paths = ['/favicon.ico', '/images/logo-hero.webp'];
+  if (process.env.TEST_PRODUCTION === '1') paths.push('/sitemap-index.xml', '/sitemap-0.xml');
+  for (const path of paths) {
+    const response = await request.get(path);
+    expect(response.status(), path).toBe(200);
+  }
+  expect((await request.get('/not-a-real-page-security-regression')).status()).toBe(404);
 });
